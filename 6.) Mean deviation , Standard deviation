@@ -1,0 +1,31 @@
+6. Measures of dispersion
+a.) Mean deviation
+
+cat("enter vector")
+c <- scan()
+l <- length(c)
+sum <- 0
+for(i in c){
+  sum <- sum+i
+}
+Mean <- sum/l
+m <- 0
+for(i in c){
+  m <- m+abs(i-Mean)
+}
+cat("mean deviation is:",m/l)
+
+b.) Standard deviation
+
+c <- scan()
+l <- length(c)
+sum <- 0
+for(i in c){
+  sum <- sum+i
+}
+Mean <- sum/l
+s <- 0
+for(i in c){
+  s <- s+(i-Mean)**2
+}
+cat("Standard deviation is:",(s/l)**(1/2))
