@@ -1,0 +1,56 @@
+1.Graphical Representation of data
+a.) Bar plot
+
+names=c('a','b','c','d')
+rollno=c(134,145,148,149)
+marks=c(9,8,7,6)
+fee=c(70000,60000,50000,60000)
+
+#creating a dataframe
+student = data.frame(names,rollno,marks,fee)
+
+#writing
+write.csv(student,"STUDENTS.csv",row.names=F)
+
+#reading
+a <- read.csv("STUDENTS.csv")
+
+student
+
+barplot(student$marks,
+        xlab="student names",
+        ylab="marks",
+        main="BioData of Students",
+        xlim=c(1,10),
+        ylim=c(1,10),
+        col="green",
+        names.arg=student$names,
+        las=0)
+
+
+b.) Frequency polygon
+
+names=c('a','b','c','d')
+rollno=c(134,145,148,149)
+marks=c(9,8,7,6)
+fee=c(70000,60000,50000,60000)
+
+#creating a dataframe
+student = data.frame(names,rollno,marks,fee)
+
+#writing
+write.csv(student,"STUDENTS.csv",row.names=F)
+
+#reading
+a <- read.csv("STUDENTS.csv")
+
+student
+
+plot(student$marks,
+     type="l",
+     xlab="student names",
+     ylab="marks",
+     main="Biodata of Students",
+     xlim=c(1,10),
+     ylim=c(1,10),
+     col="black")
