@@ -1,0 +1,60 @@
+Measures of central tendency
+a) Mean
+cat("enter vector")
+a <- scan()
+l <- length(a)
+sum <- 0
+for (i in 1:l) {
+  sum=sum+a[i]
+}  
+cat("Mean is",sum/l)
+
+cat("Mean from builtin function is",mean(a))
+
+
+b) Median
+cat("Enter the vector:")
+b <- scan()
+l <- length(b)
+for (i in 1:(l-1)){
+  for (j in (i+1):l){
+    if(b[i]>b[j]){
+      temp=b[i]
+      c[i]=b[j]
+      b[j]=temp
+    }
+  }
+}
+cat("Sorted vector is:",b)
+if(l%%2!=0){
+  Median <- b[l/2]
+}else{
+  Median <- (b[l/2]+b[(l/2)+1])/2
+}
+cat("Median is:",Median)
+
+cat("Median is from builtin function",median(b))
+
+
+c) mode
+cat("enter the vector")
+c <- scan()
+v <- vector()
+l <- length(c)
+for(i in 1:(l-1)){
+  v[i] <- -1
+  for(j in (i+1):l){
+    if(c[i]==c[j]){
+      v[i] <- v[i]+1
+    }
+  }
+}
+max <- v[1]
+pos <- 1
+for(i in 2:(l-1)){
+  if(max<v[i]){
+    max=v[i]
+    pos=i
+  }
+}
+cat("Mode is",c[pos])
