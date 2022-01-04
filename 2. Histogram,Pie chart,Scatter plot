@@ -1,0 +1,43 @@
+#Graphical representation of data
+
+names=c('a','b','c','d')
+rollno=c(134,145,148,149)
+marks=c(8,6,4,2)
+fee=c(70000,60000,50000,60000)
+
+#creating a dataframe
+student = data.frame(names,rollno,marks,fee)
+
+#writing
+write.csv(student,"STUDENTS.csv",row.names=F)
+
+#reading
+a <- read.csv("STUDENTS.csv")
+
+#a) Histogram
+hist(student$marks,
+     xlab="names",
+     ylab="marks",
+     xlim=c(1,10),
+     ylim=c(1,10),
+     col="black",
+     main="Biodata of students",
+     las=1)
+
+#b) Piechart
+genere <- table(student$marks)
+pie(genere,
+    main="Biodata of students",
+    border="black",
+    col="green")
+
+#c) Scatterplot
+plot(student$fee,
+     student$marks,
+     main="biodata of students",
+     xlab="student fee",
+     ylab="student marks",
+     col="black",
+     las=1)
+cor(student$fee,student$marks)
+
