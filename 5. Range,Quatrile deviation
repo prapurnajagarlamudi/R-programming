@@ -16,3 +16,29 @@ Range <- r[l]-c[1]
 cat("range of given vector is:",Range)
 
 cat("range from bultin fn is:",range(r))
+
+b) Quartile deviation
+x <- scan()
+q1 <- (n+1)/4
+q3 <- (3*(n+1))/4
+d <- (x[q3]-x[q1])/2
+cat("quartile deviation is",d)
+
+
+a <- scan()
+n <- length(a)
+b <- sort(a)
+if(n%%2==0){
+  upper <- b[1:(n/2)]
+  q1 <- median(upper)
+  lower <- b[((n/2)+1):(n)]
+  q3 <- median(lower)
+  qd <- (q3-q1)/2
+}else{
+  upper <- b[1:((n/2))]
+  q1 <- median(upper)
+  lower <- b[((n/2)+2):(n+1)]
+  q3 <- median(lower)
+  qd <- (q3-q1)/2
+}
+cat("quartile deviation of given data is:",qd)
