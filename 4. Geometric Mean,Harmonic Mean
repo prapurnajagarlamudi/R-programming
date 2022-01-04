@@ -1,0 +1,26 @@
+4. Measures of central tendency
+a) Geometric Mean
+cat("enter vector")
+g <- scan()
+l <- length(h)
+prod <- 1
+for(i in c) {
+  prod <- prod*i
+}
+k <- prod**(1/l)
+cat("Geometric mean of given data is:",k)
+
+cat("Geometric mean from built-in fn is:",exp(mean(log(g))))
+
+
+b) Harmonic Mean
+cat("enter vector")
+h <- scan()
+l <- length(h)
+sum <- 0
+for(i in c){
+  sum <- sum+(1/i)
+}
+cat("harmonic mean is:",l/pod)
+cat("harmonic mean is from builtin fn is:",1/mean(1/h))
+
