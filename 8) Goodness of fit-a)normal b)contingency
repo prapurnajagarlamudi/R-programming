@@ -1,0 +1,250 @@
+#Goodness of fit
+a) Normal distribution
+
+x1 <- c(1,3,5,7,9)
+x2 <- c(3,5,7,9,11)
+x <- (x1+x2)/2
+f <- c(1,4,6,4,1)
+fx <- f*x
+
+sumf <- sum(f)
+print(sumf)
+
+sumfx <- sum(fx)
+print(sumfx)
+
+xbar <- sumfx/sumf
+print(xbar)
+
+s <- sum(f*((x-xbar)^2))
+sd <- sqrt(s/sumf)
+print(sd)
+
+z1 <- (x1-xbar)/sd
+print(z1)
+
+z2 <- (x2-xbar)/sd
+print(z2)
+
+fx2 <- pnorm(x2,xbar,sd)
+fx1 <- pnorm(x1,xbar,sd)
+fx2 <- round(fx2,digits=5)
+fx1 <- round(fx1,digits=5)
+px = fx2-fx1
+fee <- (px*sumf)
+fe <- round(fee,digits=0)
+
+mydata <- data.frame(x1,x2,x,f,fx,z1,z2,px,fe)
+print(mydata)
+
+sums<-list(NA,NA,NA,sumf,sumfx,NA,NA,NA,NA)
+mydata<-rbind(mydata,sums)
+print(mydata,row.names=FALSE)
+
+result<-chisq.test(f,p=px,rescale.p=TRUE)
+print(result)
+
+tablevalue <- qchisq(0.95,4)
+print(tablevalue)
+
+caluclatedvalue=result[1]
+
+if(caluclatedvalue>=tablevalue) {
+  print("data not fit into ND")
+} else {
+  print("data fit into ND")
+}
+
+> x1 <- c(1,3,5,7,9)
+
+> x2 <- c(3,5,7,9,11)
+
+> x <- (x1+x2)/2
+
+> f <- c(1,4,6,4,1)
+
+> fx <- f*x
+
+> sumf <- sum(f)
+
+> print(sumf)
+[1] 16
+
+> sumfx <- sum(fx)
+
+> print(sumfx)
+[1] 96
+
+> xbar <- sumfx/sumf
+
+> print(xbar)
+[1] 6
+
+> s <- sum(f*((x-xbar)^2))
+
+> sd <- sqrt(s/sumf)
+
+> print(sd)
+[1] 2
+
+> z1 <- (x1-xbar)/sd
+
+> print(z1)
+[1] -2.5 -1.5 -0.5  0.5  1.5
+
+> z2 <- (x2-xbar)/sd
+
+> print(z2)
+[1] -1.5 -0.5  0.5  1.5  2.5
+
+> fx2 <- pnorm(x2,xbar,sd)
+
+> fx1 <- pnorm(x1,xbar,sd)
+
+> fx2 <- round(fx2,digits=5)
+
+> fx1 <- round(fx1,digits=5)
+
+> px = fx2-fx1
+
+> fee <- (px*sumf)
+
+> fe <- round(fee,digits=0)
+
+> mydata <- data.frame(x1,x2,x,f,fx,z1,z2,px,fe)
+
+> print(mydata)
+  x1 x2  x f fx   z1   z2      px fe
+1  1  3  2 1  2 -2.5 -1.5 0.06060  1
+2  3  5  4 4 16 -1.5 -0.5 0.24173  4
+3  5  7  6 6 36 -0.5  0.5 0.38292  6
+4  7  9  8 4 32  0.5  1.5 0.24173  4
+5  9 11 10 1 10  1.5  2.5 0.06060  1
+
+> sums<-list(NA,NA,NA,sumf,sumfx,NA,NA,NA,NA)
+
+> mydata<-rbind(mydata,sums)
+
+> print(mydata,row.names=FALSE)
+ x1 x2  x  f fx   z1   z2      px fe
+  1  3  2  1  2 -2.5 -1.5 0.06060  1
+  3  5  4  4 16 -1.5 -0.5 0.24173  4
+  5  7  6  6 36 -0.5  0.5 0.38292  6
+  7  9  8  4 32  0.5  1.5 0.24173  4
+  9 11 10  1 10  1.5  2.5 0.06060  1
+ NA NA NA 16 96   NA   NA      NA NA
+
+> result<-chisq.test(f,p=px,rescale.p=TRUE)
+
+> print(result)
+
+	Chi-squared test for given probabilities
+
+data:  f
+X-squared = 0.010944, df = 4, p-value = 1
+
+
+> tablevalue <- qchisq(0.95,4)
+
+> print(tablevalue)
+[1] 9.487729
+
+> caluclatedvalue=result[1]
+
+> if(caluclatedvalue>=tablevalue) {
++   print("data not fit into ND")
++ } else {
++   print("data fit into ND")
++ }
+[1] "data fit into ND"
+
+
+
+
+b)contingency table
+m <- as.table((rbind(c(190,243,197),c(82,44,44),c(23,78,34),c(5,12,8))))
+dimnames(m)=list(categories=c("Labour","Clerks","Technicians","Executives"), BonusSchemes=c("Type1","Type2","Type3"))
+print(m)
+
+csum<-colSums(m)
+rsum<-rowSums(m)
+
+mytable<-(rbind(m,csum))
+mytable<-(cbind(mytable,rsum))
+print(mytable)
+
+result<-chisq.test(m)
+print(result)
+
+caluclatedvalue=result[1]
+
+tablevalue <- qchisq(0.95,6)
+print(tablevalue)
+
+if(caluclatedvalue>=tablevalue) {
+  print("data doesnot fit ")
+} else {
+  print("data fit")
+}
+
+print(test$expected,digits=3)
+
+> m <- as.table((rbind(c(190,243,197),c(82,44,44),c(23,78,34),c(5,12,8))))
+
+> dimnames(m)=list(categories=c("Labour","Clerks","Technicians","Executives"), BonusSchemes=c("Type1","Type2","Type3"))
+
+> print(m)
+             BonusSchemes
+categories    Type1 Type2 Type3
+  Labour        190   243   197
+  Clerks         82    44    44
+  Technicians    23    78    34
+  Executives      5    12     8
+
+> csum<-colSums(m)
+
+> rsum<-rowSums(m)
+
+> mytable<-(rbind(m,csum))
+
+> mytable<-(cbind(mytable,rsum))
+
+> print(mytable)
+            Type1 Type2 Type3 rsum
+Labour        190   243   197  630
+Clerks         82    44    44  170
+Technicians    23    78    34  135
+Executives      5    12     8   25
+csum          300   377   283  630
+
+> result<-chisq.test(m)
+
+> print(result)
+
+	Pearson's Chi-squared test
+
+data:  m
+X-squared = 48.101, df = 6, p-value = 1.128e-08
+
+
+> caluclatedvalue=result[1]
+
+> tablevalue <- qchisq(0.95,6)
+
+> print(tablevalue)
+[1] 12.59159
+
+> if(caluclatedvalue>=tablevalue) {
++   print("data doesnot fit ")
++ } else {
++   print("data fit")
++ }
+[1] "data doesnot fit "
+
+> print(result$expected,digits=3)
+             BonusSchemes
+categories     Type1  Type2  Type3
+  Labour      196.88 247.41 185.72
+  Clerks       53.12  66.76  50.11
+  Technicians  42.19  53.02  39.80
+  Executives    7.81   9.82   7.37
