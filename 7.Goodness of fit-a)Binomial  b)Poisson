@@ -1,6 +1,6 @@
 #goodness of fit
 #a) binomial
-
+source code:
 x <- c(0,1,2,3,4,5,6)
 f <- c(13,25,52,58,32,16,4)
 fx <- x*f
@@ -28,6 +28,15 @@ print(val)
 tablevalue <- qchisq(0.95,n)
 print(tablevalue)
 
+caluclatedvalue=result[1]
+
+if(caluclatedvalue>=tablevalue) {
+  print("data doesnot fit ")
+} else {
+  print("data fit")
+}
+
+output:
 > #goodness of fit
 > #a) binomial
 > 
@@ -92,11 +101,19 @@ X-squared = 15.549, df = 6, p-value = 0.01639
 > print(tablevalue)
 [1] 12.59159
 
+> if(caluclatedvalue>=tablevalue) {
++   print("data doesnot fit ")
++ } else {
++   print("data fit")
++ }
+[1] "data doesnot fit "
+
 
 
 
 
 #b) possion
+source code:
 x <- c(0,1,2,3,4)
 f <- c(211,90,19,5,0)
 fx <- x*f
@@ -122,6 +139,15 @@ print(val)
 tablevalue<-qchisq(0.95,n)
 print(tablevalue)
 
+caluclatedvalue=result[1]
+
+if(caluclatedvalue>=tablevalue) {
+  print("data doesnot fit ")
+} else {
+  print("data fit")
+}
+
+output:
 > #b) possion
 > x <- c(0,1,2,3,4)
 
@@ -177,3 +203,13 @@ X-squared = 1.8511, df = 4, p-value = 0.7631
 
 > print(tablevalue)
 [1] 9.487729
+
+> caluclatedvalue=result[1]
+
+> if(caluclatedvalue>=tablevalue) {
++   print("data doesnot fit ")
++ } else {
++   print("data fit")
++ }
+[1] "data doesnot fit "
+
