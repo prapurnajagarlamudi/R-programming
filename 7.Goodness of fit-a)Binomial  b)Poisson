@@ -1,0 +1,179 @@
+#goodness of fit
+#a) binomial
+
+x <- c(0,1,2,3,4,5,6)
+f <- c(13,25,52,58,32,16,4)
+fx <- x*f
+sumfx <- sum(fx)
+sumf <- sum(f)
+n <- length(x)-1
+p <- sumfx/sumf/n
+print(p)
+bio <- dbinom(0:6,n,p)
+
+print(bio)
+
+fee <- sumf*bio
+fe <- round(fee,digits=0)
+print(fe)
+
+data <- data.frame(x,f,fx,bio,fee,fe)
+total <- list(NA,sum(f),sum(f*x),NA,NA,sum(fe))
+MyData <- rbind(data,total)
+print(MyData,row.names=FALSE)
+
+val <- chisq.test(f,p=bio,rescale.p=TRUE)
+print(val)
+
+tablevalue <- qchisq(0.95,n)
+print(tablevalue)
+
+> #goodness of fit
+> #a) binomial
+> 
+> x <- c(0,1,2,3,4,5,6)
+
+> f <- c(13,25,52,58,32,16,4)
+
+> fx <- x*f
+
+> sumfx <- sum(fx)
+
+> sumf <- sum(f)
+
+> n <- length(x)-1
+
+> p <- sumfx/sumf/n
+
+> print(p)
+[1] 0.4458333
+
+> bio <- dbinom(0:6,n,p)
+
+> print(bio)
+[1] 0.028962923 0.139805991 0.281188742 0.301626018 0.181996150
+[6] 0.058567182 0.007852993
+
+> fee <- sumf*bio
+
+> fe <- round(fee,digits=0)
+
+> print(fe)
+[1]  6 28 56 60 36 12  2
+
+> data <- data.frame(x,f,fx,bio,fee,fe)
+
+> total <- list(NA,sum(f),sum(f*x),NA,NA,sum(fe))
+
+> MyData <- rbind(data,total)
+
+> print(MyData,row.names=FALSE)
+  x   f  fx         bio       fee  fe
+  0  13   0 0.028962923  5.792585   6
+  1  25  25 0.139805991 27.961198  28
+  2  52 104 0.281188742 56.237748  56
+  3  58 174 0.301626018 60.325204  60
+  4  32 128 0.181996150 36.399230  36
+  5  16  80 0.058567182 11.713436  12
+  6   4  24 0.007852993  1.570599   2
+ NA 200 535          NA        NA 200
+
+> val <- chisq.test(f,p=bio,rescale.p=TRUE)
+
+> print(val)
+
+	Chi-squared test for given probabilities
+
+data:  f
+X-squared = 15.549, df = 6, p-value = 0.01639
+
+> tablevalue <- qchisq(0.95,n)
+
+> print(tablevalue)
+[1] 12.59159
+
+
+
+
+
+#b) possion
+x <- c(0,1,2,3,4)
+f <- c(211,90,19,5,0)
+fx <- x*f
+sumfx <- sum(fx)
+sumf <- sum(f)
+n <- length(x)-1
+lambda <- sumfx/sumf
+pos <- dpois(0:4,lambda)
+print(pos)
+
+fee <- sumf*pos
+fe <-round(fee,digits=0)
+print(fe)
+
+data <- data.frame(x,f,fx,pos,fe)
+total <- list(NA,sum(f),sum(f*x),NA,sum(fe))
+MyData <- rbind(data,total)
+print(MyData)
+
+val <- chisq.test(f,p=pos,rescale.p=TRUE)
+print(val)
+
+tablevalue<-qchisq(0.95,n)
+print(tablevalue)
+
+> #b) possion
+> x <- c(0,1,2,3,4)
+
+> f <- c(211,90,19,5,0)
+
+> fx <- x*f
+
+> sumfx <- sum(fx)
+
+> sumf <- sum(f)
+
+> n <- length(x)-1
+
+> lambda <- sumfx/sumf
+
+> pos <- dpois(0:4,lambda)
+
+> print(pos)
+[1] 0.644036421 0.283376025 0.062342726 0.009143600 0.001005796
+
+> fee <- sumf*pos
+
+> fe <-round(fee,digits=0)
+
+> print(fe)
+[1] 209  92  20   3   0
+
+> data <- data.frame(x,f,fx,pos,fe)
+
+> total <- list(NA,sum(f),sum(f*x),NA,sum(fe))
+
+> MyData <- rbind(data,total)
+
+> print(MyData)
+   x   f  fx         pos  fe
+1  0 211   0 0.644036421 209
+2  1  90  90 0.283376025  92
+3  2  19  38 0.062342726  20
+4  3   5  15 0.009143600   3
+5  4   0   0 0.001005796   0
+6 NA 325 143          NA 324
+
+> val <- chisq.test(f,p=pos,rescale.p=TRUE)
+
+> print(val)
+
+	Chi-squared test for given probabilities
+
+data:  f
+X-squared = 1.8511, df = 4, p-value = 0.7631
+
+> tablevalue<-qchisq(0.95,n)
+
+> print(tablevalue)
+[1] 9.487729
