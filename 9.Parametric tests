@@ -1,0 +1,243 @@
+a) t-test for one-mean  
+
+#one mean
+
+data <- scan()
+print("Enter the value of mu")
+mu <- 66
+
+print("Enter the value of level of significance")
+alpha <- scan()
+
+print("Enter the condition")
+condition=readline()
+
+n <- length(data)
+
+xbar <- sum(data)/n
+print(xbar)
+
+std <- sd(data)
+print(std)
+
+t <- ((xbar-mu)/(std/sqrt(n)))
+print(t) 
+
+result <- t.test(data,mu=mu)
+print(result)
+
+if(condition!="!=") {
+  tablevalue <- qt(1-alpha/2,df=n-1)
+  if(result[1]>=tablevalue){
+    print("Reject Ho")
+  } else {
+    print("Accept Ho")
+  }
+} else {
+  tablevalue <- qt(1-alpha,df=n-1)
+  if(result[1]>=tablevalue){
+    print("Reject Ho")
+  } else {
+    print("Accept Ho")
+  }
+}
+
+output:
+> #one mean
+> 
+> data <- scan()
+1: 63
+2: 63
+3: 66
+4: 67
+5: 68
+6: 69
+7: 70
+8: 70
+9: 71
+10: 71
+11: 
+Read 10 items
+
+> print("Enter the value of mu")
+[1] "Enter the value of mu"
+
+> mu <- 66
+
+> print("Enter the value of level of significance")
+[1] "Enter the value of level of significance"
+
+> alpha <- scan()
+1: 0.05
+2: 
+Read 1 item
+
+> print("Enter the condition")
+[1] "Enter the condition"
+
+> condition=readline()
+!=
+
+> n <- length(data)
+
+> xbar <- sum(data)/n
+
+> print(xbar)
+[1] 67.8
+
+> std <- sd(data)
+
+> print(std)
+[1] 3.011091
+
+> t <- ((xbar-mu)/(std/sqrt(n)))
+
+> print(t) 
+[1] 1.890378
+
+> result <- t.test(data,mu=mu)
+
+> print(result)
+
+	One Sample t-test
+
+data:  data
+t = 1.8904, df = 9, p-value = 0.09128
+alternative hypothesis: true mean is not equal to 66
+95 percent confidence interval:
+ 65.646 69.954
+sample estimates:
+mean of x 
+     67.8 
+
+
+> if(condition!="!=") {
++   tablevalue <- qt(1-alpha/2,df=n-1)
++   if(result[1]>=tablevalue){
++     print("Reject Ho")
++   } else {
++     print("Accep ..." ... [TRUNCATED] 
+[1] "Reject Ho"
+
+
+
+
+
+b) t-test for two means  
+
+# two mean
+
+data1 <- scan()
+data2 <- scan()
+
+print("Enter the condition")
+condition=readline()
+
+n1 <- length(data1)
+n2 <- length(data2)
+
+xbar <- sum(data1)/n1
+print(xbar)
+ybar <- sum(data2)/n2
+print(ybar)
+
+std <- sqrt((((n1-1)*(sd(data1))^2)+(n2-1)*(sd(data2))^2)/(n1+n2-2))
+print(std)
+
+t <- ((xbar-ybar)/(std*(sqrt((1/n1)+(1/n2)))))
+print(t)
+
+result <- t.test(data1,data2)
+print(result)
+
+if(condition!="!=") {
+  tablevalue <- qt(1-alpha/2,df=n-1)
+  if(result[1]>=tablevalue){
+    print("Reject Ho")
+  } else {
+    print("Accept Ho")
+  }
+} else {
+  tablevalue <- qt(1-alpha,df=n-1)
+  if(result[1]>=tablevalue){
+    print("Reject Ho")
+  } else {
+    print("Accept Ho")
+  }
+}
+output:
+> # two mean
+> 
+> data1 <- scan()
+1: 8260
+2: 8130
+3: 8350
+4: 8070
+5: 8340
+6: 
+Read 5 items
+
+> data2 <- scan()
+1: 7950
+2: 7890
+3: 7900
+4: 8140
+5: 7920
+6: 7840
+7: 
+Read 6 items
+
+> print("Enter the condition")
+[1] "Enter the condition"
+
+> condition=readline()
+!=
+
+> n1 <- length(data1)
+
+> n2 <- length(data2)
+
+> xbar <- sum(data1)/n1
+
+> print(xbar)
+[1] 8230
+
+> ybar <- sum(data2)/n2
+
+> print(ybar)
+[1] 7940
+
+> std <- sqrt((((n1-1)*(sd(data1))^2)+(n2-1)*(sd(data2))^2)/(n1+n2-2))
+
+> print(std)
+[1] 114.3095
+
+> t <- ((xbar-ybar)/(std*(sqrt((1/n1)+(1/n2)))))
+
+> print(t)
+[1] 4.189671
+
+> result <- t.test(data1,data2)
+
+> print(result)
+
+	Welch Two Sample t-test
+
+data:  data1 and data2
+t = 4.1136, df = 7.8588, p-value =
+0.003505
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 126.9208 453.0792
+sample estimates:
+mean of x mean of y 
+     8230      7940 
+
+
+> if(condition!="!=") {
++   tablevalue <- qt(1-alpha/2,df=n-1)
++   if(result[1]>=tablevalue){
++     print("Reject Ho")
++   } else {
++     print("Accep ..." ... [TRUNCATED] 
+[1] "Reject Ho"
